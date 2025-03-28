@@ -24,6 +24,7 @@ CREATE TABLE tasks (
     user_id INTEGER,
     title VARCHAR(255),
     closing_date DATE,
+--  今回は未着手・進行中・完了の3つだけの要件で今後変更もないため外部キーにはしない
     progress INTEGER,
     memo TEXT
 );
