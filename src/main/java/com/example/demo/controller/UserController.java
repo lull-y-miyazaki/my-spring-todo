@@ -1,5 +1,7 @@
 package com.example.demo.controller;
 
+import jakarta.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +17,9 @@ public class UserController {
 
 	@Autowired
 	private UserRepository userRepository;
+
+	@Autowired
+	private HttpSession session;
 
 	// 新規ユーザー登録画面の表示
 	@GetMapping("/users/add")
@@ -42,10 +47,18 @@ public class UserController {
 	}
 
 	// ログイン画面の表示
-	@GetMapping({ "/", "/login" })
+	@GetMapping({ "/", "/login", "/logout" })
 	public String index(
 			@RequestParam(defaultValue = "") String error,
 			Model model) {
+
+		// セッション情報全てをクリア
+		session.invalidate();
+
+		// クエリパラメータで"notLoggedIn"を受け取った場合
+		if (error.equals("notLoggedIn")) {
+			model.addAttribute("message", "ログインしてください");
+		}
 
 		return "user/login";
 	}
