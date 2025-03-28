@@ -11,7 +11,7 @@ CREATE TABLE categories
 );
 -- users テーブルを作成するクエリ
 CREATE TABLE users (
-    id INTEGER PRIMARY KEY,
+    id SERIAL PRIMARY KEY,
     email VARCHAR(255),
     name VARCHAR(20),
     password VARCHAR(50)
@@ -19,7 +19,7 @@ CREATE TABLE users (
 
 -- tasks テーブルを作成するクエリ
 CREATE TABLE tasks (
-    id INTEGER PRIMARY KEY,
+    id SERIAL PRIMARY KEY,
     category_id INTEGER,
     user_id INTEGER,
     title VARCHAR(255),
