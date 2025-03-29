@@ -1,10 +1,64 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+	<meta charset="UTF-8">
+	<title>タスク一覧画面</title>
 </head>
+
 <body>
 
+	<nav class="">
+		<div class="">
+			<a href="/tasks">全タスク</a>
+			<a th:each="category:${categories}" th:href="@{/tasks(categoryId=${category.id})}">
+				<span th:text="${category.name}"></span>
+			</a>
+		</div>
+	</nav>
+
+	<h2>
+		<a href="/tasks/add">新規作成</a>
+	</h2>
+
+	<div class="">
+		<table class="">
+			<tr class="">
+				<th class="">NO</th>
+				<th class="">タイトル</th>
+				<th class="">カテゴリー</th>
+				<th class="">期限</th>
+				<th class="">進捗状況</th>
+				<th class="">変更</th>
+				<th class="">削除</th>
+			</tr>
+			<tr th:each="task:${tasks}" class="">
+				<td th:text="${task.id}" class=""></td>
+				<td th:text="${task.title}" class=""></td>
+
+				<!--# Thymeleafはドットでつないだプロパティ呼び出しは、順にget〇〇() をたどっていく仕組み
+				 なので、task.getCategory().getName()と同じになる #-->
+				<td th:text="${task.category.name}" class=""></td>
+
+				<td th:text="${task.closingDate}" class=""></td>
+				<td th:text="${task.progress}" class=""></td>
+
+				<td class="">
+					<form action="/tasks/edit" method="get">
+						<input type="hidden" name="taskId" th:value="${task.id}">
+						<button class="">変更</button>
+					</form>
+				</td>
+				<td class="">
+					<form action="/tasks/delete" method="post">
+						<input type="hidden" name="taskId" th:value="${task.id}">
+						<button class="">削除</button>
+					</form>
+				</td>
+			</tr>
+		</table>
+	</div>
+
 </body>
+
 </html>
