@@ -22,6 +22,7 @@ public class TaskController {
 	@Autowired
 	private TaskRepository taskRepository;
 
+	// タスク一覧画面の表示
 	@GetMapping("/tasks")
 	public String index(
 			@RequestParam(defaultValue = "") Integer categoryId,
@@ -43,6 +44,17 @@ public class TaskController {
 		model.addAttribute("tasks", taskList);
 
 		return "task/tasks";
+	}
+
+	// タスクの新規登録画面の表示
+	@GetMapping("/tasks/add")
+	public String create(Model model) {
+
+		// 全カテゴリーの取得
+		List<Category> categoryList = categoryRepository.findAll();
+		model.addAttribute("categories", categoryList);
+
+		return "task/addTask";
 	}
 
 }
