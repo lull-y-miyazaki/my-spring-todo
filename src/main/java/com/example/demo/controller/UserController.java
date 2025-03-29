@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.entity.User;
+import com.example.demo.model.Account;
 import com.example.demo.repository.UserRepository;
 
 @Controller
@@ -20,6 +21,9 @@ public class UserController {
 
 	@Autowired
 	private HttpSession session;
+
+	@Autowired
+	private Account account;
 
 	// 新規ユーザー登録画面の表示
 	@GetMapping("/users/add")
@@ -61,6 +65,35 @@ public class UserController {
 		}
 
 		return "user/login";
+	}
+
+	// ログイン処理
+	@PostMapping("/login")
+	public String login(
+			@RequestParam String email,
+			@RequestParam String password,
+			Model model) {
+
+		// email または password が空の場合にエラーメッセージを表示
+		if (email == null || email.isEmpty() || password == null || password.isEmpty()) {
+			model.addAttribute("message", "メールアドレスとパスワードを入力してください");
+			return "login";
+		}
+
+		// データーベースからユーザー情報を取得
+		User user = userRepository.findByEmailAndPassword(email, password);
+
+		// email または password が正しくない場合にエラーメッセージを表示
+		if (user == null) {
+			model.addAttribute("message", "メールアドレスまたはパスワードが正しくありません");
+			return "login";
+		}
+
+		// ログイン情報をAccountに保存
+		account.setId(user.getId());
+		account.setName(user.getName());
+
+		return "redirect:/tasks";
 	}
 
 }
