@@ -116,4 +116,31 @@ public class TaskController {
 		return "task/editTask";
 	}
 
+	// タスク更新処理
+	@PostMapping("/tasks/update")
+	public String update(
+			@RequestParam Integer taskId,
+			@RequestParam Integer categoryId,
+			@RequestParam String title,
+			@RequestParam LocalDate closingDate,
+			@RequestParam Integer progress,
+			@RequestParam String memo,
+			Model model) {
+
+		// カテゴリー情報の取得
+		// orElseThrow()：中身が「ある」なら取り出して、「ない」なら例外を投げる
+		Category category = categoryRepository.findById(categoryId).orElseThrow();
+
+		// ログインしているユーザー情報の取得
+		User user = userRepository.findById(account.getId()).orElseThrow();
+
+		// タスク更新用インスタンスを生成
+		Task task = new Task(taskId, category, user, title, closingDate, progress, memo);
+
+		// 引数のエンティティをDBに保存
+		taskRepository.save(task);
+
+		return "redirect:/tasks";
+	}
+
 }
