@@ -143,4 +143,15 @@ public class TaskController {
 		return "redirect:/tasks";
 	}
 
+	// タスクの削除処理
+	@PostMapping("/tasks/delete")
+	public String delete(
+			@RequestParam Integer taskId,
+			Model model) {
+
+		taskRepository.deleteById(taskId);
+
+		return "redirect:/tasks";
+	}
+
 }
