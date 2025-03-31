@@ -1,17 +1,22 @@
 package com.example.demo.controller;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.entity.Category;
 import com.example.demo.entity.Task;
+import com.example.demo.entity.User;
+import com.example.demo.model.Account;
 import com.example.demo.repository.CategoryRepository;
 import com.example.demo.repository.TaskRepository;
+import com.example.demo.repository.UserRepository;
 
 @Controller
 public class TaskController {
@@ -21,6 +26,12 @@ public class TaskController {
 
 	@Autowired
 	private TaskRepository taskRepository;
+
+	@Autowired
+	public UserRepository userRepository;
+
+	@Autowired
+	public Account account;
 
 	// タスク一覧画面の表示
 	@GetMapping("/tasks")
@@ -55,6 +66,32 @@ public class TaskController {
 		model.addAttribute("categories", categoryList);
 
 		return "task/addTask";
+	}
+
+	// タスクの新規登録処理
+	@PostMapping("/tasks/add")
+	public String add(
+			@RequestParam Integer categoryId,
+			@RequestParam String title,
+			@RequestParam LocalDate closingDate,
+			@RequestParam Integer progress,
+			@RequestParam String memo,
+			Model model) {
+
+		// カテゴリー情報の取得
+		// orElseThrow()：中身が「ある」なら取り出して、「ない」なら例外を投げる
+		Category category = categoryRepository.findById(categoryId).orElseThrow();
+
+		// ログインしているユーザー情報の取得
+		User user = userRepository.findById(account.getId()).orElseThrow();
+
+		// ブログ新規作成用のインスタンスを生成
+		Task task = new Task(category, user, title, closingDate, progress, memo);
+
+		// 引数のエンティティをDBに保存
+		taskRepository.save(task);
+
+		return "redirect:/tasks";
 	}
 
 }

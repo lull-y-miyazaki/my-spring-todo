@@ -12,6 +12,9 @@
 
 	<form action="/tasks/add" method="post">
 
+		<!--/* taskTableテンプレートの再利用 */-->
+		<span th:replace="~{fragments/taskTable}"></span>
+
 		<button>新規作成</button>
 	</form>
 </body>
