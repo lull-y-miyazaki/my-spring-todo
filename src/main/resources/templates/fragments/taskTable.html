@@ -14,35 +14,35 @@
 	<tr class="">
 		<th class="">タイトル</th>
 		<td class="">
-			<input type="text" name="title" class="" />
+			<input type="text" name="title" class="" required />
 		</td>
 	</tr>
 	<tr class="">
-			<th class="">期限</th>
-			<td class="">
-				<input type="date" name="closingDate" class="" />
-			</td>
-		</tr>
-		<tr class="">
-				<th class="">進行状況</th>
-				<td class="">
-					<label>未着手
-					<input type="radio" name="progress" value="0" class="" />
-					</label>
-					
-					<label>進行中
-					<input type="radio" name="progress" value="1" class="" />
-					</label>
-					
-					<label>完了
-					<input type="radio" name="progress" value="2" class="" />
-					</label>
-				</td>
-			</tr>
+		<th class="">期限</th>
+		<td class="">
+			<input type="date" name="closingDate" class="" required />
+		</td>
+	</tr>
+	<tr class="">
+		<th class="">進行状況</th>
+		<td class="">
+			<label>未着手
+				<input type="radio" name="progress" value="0" class="" checked />
+			</label>
+
+			<label>進行中
+				<input type="radio" name="progress" value="1" class="" />
+			</label>
+
+			<label>完了
+				<input type="radio" name="progress" value="2" class="" />
+			</label>
+		</td>
+	</tr>
 	<tr class="">
 		<th class="">メモ</th>
 		<td class="">
-			<textarea name="memo" class=""></textarea>
+			<textarea name="memo" class="" required></textarea>
 		</td>
 	</tr>
 
