@@ -1,7 +1,8 @@
 package com.example.demo.entity;
 
-import java.util.Date;
+import java.time.LocalDate;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -27,7 +28,8 @@ public class Task {
 
 	private String title;
 
-	private Date closingDate;
+	@Column(name = "closing_date")
+	private LocalDate closingDate;
 
 	private Integer progress;
 
@@ -38,7 +40,7 @@ public class Task {
 	}
 
 	// 新規登録用のコンストラクタ
-	public Task(Category category, User user, String title, Date closingDate, Integer progress, String memo) {
+	public Task(Category category, User user, String title, LocalDate closingDate, Integer progress, String memo) {
 		this.category = category;
 		this.user = user;
 		this.title = title;
@@ -47,8 +49,8 @@ public class Task {
 		this.memo = memo;
 	}
 
-	// 新規登録用のコンストラクタ
-	public Task(Integer id, Category category, User user, String title, Date closingDate, Integer progress,
+	// 更新用のコンストラクタ
+	public Task(Integer id, Category category, User user, String title, LocalDate closingDate, Integer progress,
 			String memo) {
 		this.id = id;
 		this.category = category;
@@ -72,7 +74,7 @@ public class Task {
 		return user;
 	}
 
-	public Date getClosingDate() {
+	public LocalDate getClosingDate() {
 		return closingDate;
 	}
 

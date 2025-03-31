@@ -11,8 +11,8 @@
 	<h2>ログイン</h2>
 	<form action="/login" method="post">
 		<div th:text="${message}"></div>
-		<input type="text" name="email" placeholder="メールアドレス" />
-		<input type="text" name="password" placeholder="パスワード" />
+		<input type="text" name="email" placeholder="メールアドレス" required />
+		<input type="text" name="password" placeholder="パスワード" required />
 		<button>ログイン</button>
 	</form>
 

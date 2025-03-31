@@ -1,10 +1,49 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
+<table class="">
 
-</body>
-</html>
+	<tr class="">
+		<th class="">カテゴリー</th>
+		<td class="">
+
+			<label th:each="category:${categories}">
+				<input type="radio" name="categoryId" th:value="${category.id}">
+				<span th:text="${category.name}"></span>
+			</label>
+
+		</td>
+	</tr>
+	<tr class="">
+		<th class="">タイトル</th>
+		<td class="">
+			<input type="text" name="title" class="" />
+		</td>
+	</tr>
+	<tr class="">
+			<th class="">期限</th>
+			<td class="">
+				<input type="date" name="closingDate" class="" />
+			</td>
+		</tr>
+		<tr class="">
+				<th class="">進行状況</th>
+				<td class="">
+					<label>未着手
+					<input type="radio" name="progress" value="0" class="" />
+					</label>
+					
+					<label>進行中
+					<input type="radio" name="progress" value="1" class="" />
+					</label>
+					
+					<label>完了
+					<input type="radio" name="progress" value="2" class="" />
+					</label>
+				</td>
+			</tr>
+	<tr class="">
+		<th class="">メモ</th>
+		<td class="">
+			<textarea name="memo" class=""></textarea>
+		</td>
+	</tr>
+
+</table>
