@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -92,6 +93,27 @@ public class TaskController {
 		taskRepository.save(task);
 
 		return "redirect:/tasks";
+	}
+
+	// タスクの編集画面の表示
+	@GetMapping("/tasks/edit")
+	public String edit(
+			@RequestParam Integer taskId,
+			Model model) {
+
+		// 全カテゴリーの取得
+		List<Category> categoryList = categoryRepository.findAll();
+		model.addAttribute("categories", categoryList);
+
+		// ID（主キー）で検索してタスク情報を取得
+		Task task = taskRepository.findById(taskId).get();
+
+		// Map.of()の簡易Mapで複数のデータをまとめて送る
+		model.addAllAttributes(Map.of(
+				"categories", categoryList,
+				"task", task));
+
+		return "task/editTask";
 	}
 
 }
