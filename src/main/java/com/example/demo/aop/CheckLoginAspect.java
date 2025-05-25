@@ -21,13 +21,14 @@ public class CheckLoginAspect {
 	// 全Controllerクラスの全メソッド処理前を指定
 	@Before("execution(* com.example.demo.controller.*Controller.*(..))")
 	public void writeLog(JoinPoint jp) {
+
 		// ログインしたアカウント情報を取得
-		if (account == null || account.getName() == null
-				|| account.getName().length() == 0) {
-			System.out.print("ゲスト：");
+		if (account.isLoggedIn()) {
+			System.out.print("アカウントID_" + account.getId() + "：");
 		} else {
-			System.out.print(account.getName() + "：");
+			System.out.print("未ログイン：");
 		}
+
 		System.out.println(jp.getSignature());
 	}
 
@@ -35,13 +36,13 @@ public class CheckLoginAspect {
 	@Around("execution(* com.example.demo.controller.TaskController.*(..))")
 	public Object checkLogin(ProceedingJoinPoint jp) throws Throwable {
 
-		if (account == null || account.getName() == null
-				|| account.getName().length() == 0) {
+		if (!account.isLoggedIn()) {
 			System.err.println("ログインしていません!");
 			// リダイレクト先を指定する
 			// パラメータを渡すことでログインControllerで
 			return "redirect:/login?error=notLoggedIn";
 		}
+
 		// Controller内のメソッドの実行
 		return jp.proceed();
 	}
