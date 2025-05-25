@@ -59,9 +59,8 @@
 					</a>
 				</td>
 				<td class="">
-					<form action="/tasks/delete" method="post">
-						<input type="hidden" name="taskId" th:value="${task.id}">
-						<button class="">削除</button>
+					<form th:action="@{/task/{taskId}/delete(taskId=${task.id})}" method="post">
+						<button type="submit" class="">削除</button>
 					</form>
 				</td>
 			</tr>
