@@ -35,3 +35,6 @@ out/
 
 ### VS Code ###
 .vscode/
+
+### アップロード画像の除外 ###
+/static/image/
