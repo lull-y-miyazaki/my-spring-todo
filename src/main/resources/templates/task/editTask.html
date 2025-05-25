@@ -10,7 +10,7 @@
 
 	<h2>タスク変更</h2>
 
-	<form action="/tasks/update" method="post">
+	<form th:action="@{/task/{taskId}/update(taskId=${task.id})}" method="post">
 
 		<table class="">
 
@@ -65,7 +65,6 @@
 
 		</table>
 
-		<input type="hidden" name="taskId" th:value="${task.id}" />
 		<button>変更</button>
 	</form>
 

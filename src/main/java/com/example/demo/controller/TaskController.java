@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -96,9 +97,9 @@ public class TaskController {
 	}
 
 	// タスクの編集画面の表示
-	@GetMapping("/tasks/edit")
+	@GetMapping("/task/{teskId}/edit")
 	public String edit(
-			@RequestParam Integer taskId,
+			@PathVariable Integer teskId,
 			Model model) {
 
 		// 全カテゴリーの取得
@@ -106,7 +107,7 @@ public class TaskController {
 		model.addAttribute("categories", categoryList);
 
 		// ID（主キー）で検索してタスク情報を取得
-		Task task = taskRepository.findById(taskId).get();
+		Task task = taskRepository.findById(teskId).get();
 
 		// Map.of()の簡易Mapで複数のデータをまとめて送る
 		model.addAllAttributes(Map.of(
@@ -117,9 +118,9 @@ public class TaskController {
 	}
 
 	// タスク更新処理
-	@PostMapping("/tasks/update")
+	@PostMapping("/task/{taskId}/update")
 	public String update(
-			@RequestParam Integer taskId,
+			@PathVariable Integer taskId,
 			@RequestParam Integer categoryId,
 			@RequestParam String title,
 			@RequestParam LocalDate closingDate,
