@@ -40,9 +40,9 @@ public class Account {
 		this.id = id;
 	}
 
-	// ログイン状態を確認するメソッド（未使用）
+	// ログイン状態を確認するメソッド
 	public boolean isLoggedIn() {
-		return id != null && name != null && !name.isEmpty();
+		return id != null;
 	}
 
 	// デバッグ・ログ出力用
