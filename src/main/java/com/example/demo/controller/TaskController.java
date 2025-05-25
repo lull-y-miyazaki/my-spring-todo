@@ -145,9 +145,9 @@ public class TaskController {
 	}
 
 	// タスクの削除処理
-	@PostMapping("/tasks/delete")
+	@PostMapping("/task/{taskId}/delete")
 	public String delete(
-			@RequestParam Integer taskId,
+			@PathVariable Integer taskId,
 			Model model) {
 
 		taskRepository.deleteById(taskId);
