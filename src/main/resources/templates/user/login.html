@@ -4,6 +4,9 @@
 <head>
 	<meta charset="UTF-8">
 	<title>ログイン</title>
+	<link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="/css/login.css" />
+	<script src="/js/login.js" defer></script>
 </head>
 
 <body>
@@ -11,8 +14,16 @@
 	<h2>ログイン</h2>
 	<form action="/login" method="post">
 		<div th:text="${message}"></div>
+
 		<input type="text" name="email" placeholder="メールアドレス" required />
-		<input type="text" name="password" placeholder="パスワード" required />
+
+		<div class="password-wrapper">
+		  <input type="password"  name="password" id="password" class="password-input" placeholder="パスワード">
+		  <button type="button" onclick="passwordview()" class="eye-button" >
+		    <i class="fa fa-eye" id="eyeIcon"></i>
+		  </button>
+		</div>
+
 		<button>ログイン</button>
 	</form>
 
