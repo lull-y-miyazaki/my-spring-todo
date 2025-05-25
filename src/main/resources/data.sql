@@ -15,7 +15,7 @@ INSERT INTO users (email, name, password) VALUES
 ('tanaka@aaa.com', '田中太郎', 'test123'),
 ('suzuki@aaa.com', '鈴木一郎', 'test456'),
 ('testuser@com', 'テストユーザー', 'testuser'),
-('test@com', 'テストマン', 'testuser');
+('test@com', 'テスト', 'testuser');
 
 -- tasks テーブルにデータを挿入するクエリ
 --INSERT INTO tasks (id, category_id, user_id, title, closing_date, progress, memo)

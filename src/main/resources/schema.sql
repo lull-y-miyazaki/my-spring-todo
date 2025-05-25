@@ -26,5 +26,7 @@ CREATE TABLE tasks (
     closing_date DATE,
 --  今回は未着手・進行中・完了の3つだけの要件で今後変更もないため外部キーにはしない
     progress INTEGER,
-    memo TEXT
+    memo TEXT,
+    --  作成日時を追加
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );

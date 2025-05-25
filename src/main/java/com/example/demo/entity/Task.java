@@ -35,6 +35,9 @@ public class Task {
 
 	private String memo;
 
+	@Column(name = "created_at", updatable = false, insertable = false)
+	private LocalDate createdAt;
+
 	// 引数なしのコンストラクタ
 	public Task() {
 	}
@@ -64,6 +67,14 @@ public class Task {
 	// ゲッター
 	public Integer getId() {
 		return id;
+	}
+
+	public LocalDate getCreatedAt() {
+		return createdAt;
+	}
+
+	public void setCreatedAt(LocalDate createdAt) {
+		this.createdAt = createdAt;
 	}
 
 	public Category getCategory() {

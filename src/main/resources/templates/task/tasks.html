@@ -29,6 +29,7 @@
 				<th class="">カテゴリー</th>
 				<th class="">期限</th>
 				<th class="">進捗状況</th>
+				<th class="">作成日時</th>
 				<th class="">変更</th>
 				<th class="">削除</th>
 			</tr>
@@ -39,9 +40,18 @@
 				<!--# Thymeleafはドットでつないだプロパティ呼び出しは、順にget〇〇() をたどっていく仕組み
 				 なので、task.getCategory().getName()と同じになる #-->
 				<td th:text="${task.category.name}" class=""></td>
-
-				<td th:text="${task.closingDate}" class=""></td>
-				<td th:text="${task.progress}" class=""></td>
+				<td th:text="${task.closingDate}" class=""></td>			
+				
+				<!--# th:switch を使って task.progress の値に応じて文字列を表示 #-->
+				<td th:switch="${task.progress}">
+					<span th:case="0">未着手</span>
+					<span th:case="1">進行中</span>
+					<span th:case="2">完了</span>
+					<span th:case="*">不明</span>
+				</td>
+				
+				<!--# 作成日時の表示 #-->
+				<td th:text="${task.createdAt}" class=""></td>
 
 				<td class="">
 					<form action="/tasks/edit" method="get">
