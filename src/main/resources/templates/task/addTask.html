@@ -9,7 +9,7 @@
 
 	<h2>新規タスク作成</h2>
 
-	<form action="/tasks/add" method="post">
+	<form action="/tasks/add" method="post" enctype="multipart/form-data">
 
 		<!--/* taskTableテンプレートの再利用 */-->
 		<span th:replace="~{fragments/taskTable}"></span>
