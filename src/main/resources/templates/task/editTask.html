@@ -62,6 +62,13 @@
 					<textarea name="memo" th:text="${task.memo}"></textarea>
 				</td>
 			</tr>
+			
+			<tr class="">
+				<th class="">画像</th>
+				<td class="">
+					<img alt="" th:src="@{/image/{imageURL}(imageURL=${task.image})}" style="width: 300px;">
+				</td>
+			</tr>
 
 		</table>
 

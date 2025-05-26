@@ -16,6 +16,7 @@ public class User {
 	private String name;
 	private String email;
 	private String password;
+	private String icon;
 
 	// コンストラクタ
 	public User() {
@@ -51,6 +52,14 @@ public class User {
 
 	public String getPassword() {
 		return password;
+	}
+
+	public String getIcon() {
+		return icon;
+	}
+
+	public void setIcon(String icon) {
+		this.icon = icon;
 	}
 
 	// 登録するユーザーの確認用でtoString()をオーバーライド

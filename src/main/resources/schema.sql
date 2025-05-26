@@ -14,7 +14,8 @@ CREATE TABLE users (
     id SERIAL PRIMARY KEY,
     email VARCHAR(255),
     name VARCHAR(20),
-    password VARCHAR(50)
+    password VARCHAR(50),
+    icon TEXT
 );
 
 -- tasks テーブルを作成するクエリ
@@ -27,6 +28,7 @@ CREATE TABLE tasks (
 --  今回は未着手・進行中・完了の3つだけの要件で今後変更もないため外部キーにはしない
     progress INTEGER,
     memo TEXT,
+    image TEXT,
     --  作成日時を追加
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
