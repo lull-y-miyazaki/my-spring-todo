@@ -92,6 +92,7 @@ public class UserController {
 		// ログイン情報をAccountに保存
 		account.setId(user.getId());
 		account.setName(user.getName());
+		account.setIcon(user.getIcon());
 
 		return "redirect:/tasks";
 	}
