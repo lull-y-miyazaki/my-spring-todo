@@ -35,6 +35,8 @@ public class Task {
 
 	private String memo;
 
+	private String image;
+
 	@Column(name = "created_at", updatable = false, insertable = false)
 	private LocalDate createdAt;
 
@@ -99,6 +101,14 @@ public class Task {
 
 	public String getMemo() {
 		return memo;
+	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
 	}
 
 }
