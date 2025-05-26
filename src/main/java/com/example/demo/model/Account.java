@@ -10,6 +10,7 @@ public class Account {
 	// フィールド
 	private Integer id;
 	private String name;
+	private String icon;
 
 	// コンストラクタ
 	public Account() {
@@ -38,6 +39,14 @@ public class Account {
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public String getIcon() {
+		return icon;
+	}
+
+	public void setIcon(String icon) {
+		this.icon = icon;
 	}
 
 	// ログイン状態を確認するメソッド
