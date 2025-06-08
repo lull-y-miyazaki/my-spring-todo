@@ -38,3 +38,15 @@ out/
 
 ### アップロード画像の除外 ###
 /static/image/
+
+### Node.js ###
+node_modules/
+.yarn/
+.yarnrc.yml
+.pnp.*
+
+#### Tailwind ビルド出力 ###
+src/main/resources/static/css/style.css
+
+# mac用
+.DS_Store
